@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="DataAccess\EntityFramework\" />
-    <Folder Include="Entities\" />
     <Folder Include="Utilities\Results\" />
   </ItemGroup>
 
