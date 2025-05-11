@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete.EntityFramework
 {
     public class EfAlbumDal : EfEntityRepositoryBase<Album, ChinookContext>, IAlbumDal
     {

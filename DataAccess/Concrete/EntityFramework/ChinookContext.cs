@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete.EntityFramework
 {
     public class ChinookContext : DbContext
     {
@@ -16,8 +16,8 @@ namespace DataAccess.Concrete
                 Database=Chinook;
                 Trusted_Connection=true");
         }
-        public DbSet<Album> Albums { get; set; }
+        public DbSet<Album> Album { get; set; }
         public DbSet<Artist> Artist { get; set; }
-        public DbSet<Track> Tracks { get; set; }
+        public DbSet<Track> Track { get; set; }
     }
 }

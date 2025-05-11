@@ -11,7 +11,7 @@ namespace Business.Abstract
     public interface IAlbumService
     {
         IDataResult<List<Album>> GetAllAlbums();
-        IDataResult<Album> GetByAlmbumId();
+        IDataResult<Album> GetByAlbumId(int id);
         IResult AddAlbum(Album album);
     }
 }

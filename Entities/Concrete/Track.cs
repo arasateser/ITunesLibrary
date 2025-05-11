@@ -10,9 +10,9 @@ namespace Entities.Concrete
     public class Track : IEntity
     {
         public int TrackId { get; set; }
-        public string Name { get; set; }
-        public string Composer { get; set; }
-        public int Miliseconds { get; set; }
-        public int UnitPrice { get; set; }
+        public string? Name { get; set; }
+        public string? Composer { get; set; }
+        public int Milliseconds { get; set; }
+        //public int UnitPrice { get; set; }
     }
 }

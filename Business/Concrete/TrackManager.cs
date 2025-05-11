@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete.Success;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -12,20 +14,25 @@ namespace Business.Concrete
 {
     public class TrackManager : ITrackService
     {
-
+        ITrackDal _trackDal;
+        public TrackManager(ITrackDal trackDal)
+        {
+            _trackDal = trackDal;
+        }
         public IDataResult<List<Track>> GetAllTracks()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Track>>(_trackDal.GetAll(), Messages.TracksListed);
         }
 
-        public IDataResult<Track> GetByTrackId()
+        public IDataResult<Track> GetByTrackId(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Track>(_trackDal.Get(p => p.TrackId == id), Messages.TracksListed);
         }
 
         public IDataResult<List<Track>> GetTracksByMiliseconds(int min, int max)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Track>>(_trackDal.GetAll(p => p.Milliseconds > min && p.Milliseconds < max), Messages.TracksListed);
+
         }
     }
 }

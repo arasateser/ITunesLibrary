@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Concrete
+namespace DataAccess.Concrete.EntityFramework
 {
     public class EfTrackDal : EfEntityRepositoryBase<Track, ChinookContext>, ITrackDal
     {

@@ -10,6 +10,6 @@ namespace Entities.Concrete
     public class Album : IEntity
     {
         public int AlbumId { get; set; }
-        public string Title { get; set; }
+        public string? Title { get; set; }
     }
 }
