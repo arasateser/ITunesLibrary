@@ -14,6 +14,7 @@ namespace Core.Utilities.Results.Concrete
         {
             Message = message;
         }
+
         public Result(bool success)
         {
             Success = success;
