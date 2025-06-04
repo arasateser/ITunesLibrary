@@ -46,5 +46,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpDelete]
+        public IActionResult DeleteAlbum(int id)
+        {
+            var result = _albumService.DeleteAlbum(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateAlbum(Album album)
+        {
+            var result = _albumService.UpdateAlbum(album);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
     }
 }

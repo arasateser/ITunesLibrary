@@ -48,5 +48,27 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result.Message);
         }
+
+        [HttpDelete]
+        public IActionResult DeleteArtist(int id)
+        {
+            var result = _artistService.DeleteArtist(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateArtist(Artist artist)
+        {
+            var result = _artistService.UpdateArtist(artist);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
     }
 }

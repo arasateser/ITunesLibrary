@@ -13,5 +13,7 @@ namespace Business.Abstract
         IDataResult<List<Album>> GetAllAlbums();
         IDataResult<Album> GetByAlbumId(int id);
         IResult AddAlbum(Album album);
+        IResult DeleteAlbum(int id);
+        IResult UpdateAlbum(Album album);
     }
 }

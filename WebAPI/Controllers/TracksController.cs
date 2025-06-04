@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +44,28 @@ namespace WebAPI.Controllers
         {
             var result = _trackService.GetTracksByMiliseconds(min, max);
 
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpPost]
+        public IActionResult AddTrack(Track track)
+        {
+            var result = _trackService.AddTrack(track);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateTrack(Track track)
+        {
+            var result = _trackService.UpdateTrack(track);
             if (result.Success)
             {
                 return Ok(result);

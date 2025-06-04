@@ -21,6 +21,7 @@ namespace Business.Concrete
             _albumDal = albumDal;
         }
 
+
         public IResult AddAlbum(Album album)
         {
             _albumDal.Add(album);
@@ -37,6 +38,20 @@ namespace Business.Concrete
             return new SuccessDataResult<Album>(_albumDal.Get
                 (a => a.AlbumId == albumId), Messages.AlbumsListed);
 
+        }
+
+        IResult IAlbumService.DeleteAlbum(int albumId)
+        {
+            var albumToDelete = _albumDal.Get(a => a.AlbumId == albumId);
+            _albumDal.Delete(albumToDelete);
+
+            return new SuccessResult(Messages.AlbumDeleted);
+        }
+
+        IResult IAlbumService.UpdateAlbum(Album album)
+        {
+            _albumDal.Update(album);
+            return new SuccessResult(Messages.AlbumUpdated);
         }
     }
 }

@@ -19,6 +19,19 @@ namespace Business.Concrete
         {
             _trackDal = trackDal;
         }
+
+        public IResult AddTrack(Track track)
+        {
+            _trackDal.Add(track);
+            return new SuccessResult(Messages.TracksAdded);
+        }
+
+        public IResult DeleteTrack(int id)
+        {
+            var trackToDelete = _trackDal.Get(t => t.TrackId == id);
+            return new SuccessResult(Messages.TracksDeleted);
+        }
+
         public IDataResult<List<Track>> GetAllTracks()
         {
             return new SuccessDataResult<List<Track>>(_trackDal.GetAll(), Messages.TracksListed);
@@ -32,7 +45,12 @@ namespace Business.Concrete
         public IDataResult<List<Track>> GetTracksByMiliseconds(int min, int max)
         {
             return new SuccessDataResult<List<Track>>(_trackDal.GetAll(p => p.Milliseconds > min && p.Milliseconds < max), Messages.TracksListed);
+        }
 
+        public IResult UpdateTrack(Track track)
+        {
+            _trackDal.Update(track);
+            return new SuccessResult(Messages.TracksUpdated);
         }
     }
 }

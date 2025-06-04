@@ -27,6 +27,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ArtistAdded);
         }
 
+        public IResult DeleteArtist(int artistId)
+        {
+            var artistToDelete = _artistDal.Get(a => a.ArtistId == artistId);
+            _artistDal.Delete(artistToDelete);
+            return new SuccessResult(Messages.ArtistDeleted);
+        }
+
         public IDataResult<List<Artist>> GetAllArtists()
         {
             return new SuccessDataResult<List<Artist>>(_artistDal.GetAll(), Messages.ArtistsListed);
@@ -37,6 +44,12 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<Artist>(_artistDal.Get(a => a.ArtistId == artistId));
 
+        }
+
+        public IResult UpdateArtist(Artist artist)
+        {
+            _artistDal.Update(artist);
+            return new SuccessResult(Messages.ArtistUpdated);
         }
     }
 }

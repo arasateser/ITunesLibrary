@@ -13,5 +13,7 @@ namespace Business.Abstract
         IDataResult<List<Artist>> GetAllArtists();
         IDataResult<Artist> GetByArtistId(int artistId);
         IResult AddArtist(Artist artist);
+        IResult DeleteArtist(int artistId);
+        IResult UpdateArtist(Artist artist);
     }
 }
