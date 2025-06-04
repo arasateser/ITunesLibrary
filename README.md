@@ -22,7 +22,7 @@ The project is structured to showcase best practices in building a maintainable,
 
 ## Technologies Used
 
-* **C#** Main programming language.
+* **C#**
 * **.NET 8**
 * **Entity Framework**
 * **Autofac**
