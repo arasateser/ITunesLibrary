@@ -13,6 +13,9 @@ namespace Entities.Concrete
         public string? Name { get; set; }
         public string? Composer { get; set; }
         public int Milliseconds { get; set; }
-        //public int UnitPrice { get; set; }
+
+        //public int MediaTypeId { get; set; }
+
+        //public decimal UnitPrice { get; set; }
     }
 }

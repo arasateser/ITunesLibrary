@@ -73,5 +73,16 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
+        [HttpDelete]
+        public IActionResult DeleteTrack(int id)
+        {
+            var result = _trackService.DeleteTrack(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result.Message);
+        }
+
     }
 }
