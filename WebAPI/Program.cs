@@ -1,24 +1,22 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Business.Abstract;
 using Business.Concrete;
+using Business.DependencyResolvers.Autofac;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// AUTOFAC USAGE
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
+    .ConfigureContainer<ContainerBuilder>(builder =>
+    {
+        builder.RegisterModule(new AutofacBusinessModule());
+    });
+
 // Add services to the container.
-
 builder.Services.AddControllers();
-
-builder.Services.AddSingleton<IAlbumService, AlbumManager>();
-builder.Services.AddSingleton<IAlbumDal, EfAlbumDal>();
-
-builder.Services.AddSingleton<IArtistService, ArtistManager>();
-builder.Services.AddSingleton<IArtistDal, EfArtistDal>();
-
-builder.Services.AddSingleton<ITrackService, TrackManager>();
-builder.Services.AddSingleton<ITrackDal, EfTrackDal>();
-
-
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
