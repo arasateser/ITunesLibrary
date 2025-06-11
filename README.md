@@ -22,11 +22,12 @@ The project is structured to showcase best practices in building a maintainable,
 
 ## Technologies Used
 
-* **C#**
-* **.NET 8**
-* **Entity Framework**
-* **Autofac**
-* **SQL Server (LocalDB)**
+* C#
+* .NET 8
+* Entity Framework
+* SQL Server (LocalDB)
+* Autofac
+* FluentValidation
 
 ## Areas for Future Improvement
 
