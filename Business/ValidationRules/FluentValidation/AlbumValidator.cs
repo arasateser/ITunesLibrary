@@ -12,7 +12,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public AlbumValidator()
         {
-            RuleFor(a=>a.Title).NotEmpty();
+            RuleFor(a => a.Title).NotEmpty();
         }
     }
 }

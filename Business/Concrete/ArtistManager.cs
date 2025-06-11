@@ -27,7 +27,7 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ArtistValidator))]
         public IResult AddArtist(Artist artist)
         {
-            ValidationTool.Validate(new ArtistValidator(), artist);
+            //ValidationTool.Validate(new ArtistValidator(), artist);
             _artistDal.Add(artist);
             return new SuccessResult(Messages.ArtistAdded);
         }
@@ -51,6 +51,7 @@ namespace Business.Concrete
 
         }
 
+        [ValidationAspect(typeof(ArtistValidator))]
         public IResult UpdateArtist(Artist artist)
         {
             _artistDal.Update(artist);

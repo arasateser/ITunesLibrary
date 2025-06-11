@@ -12,7 +12,7 @@ namespace Business.ValidationRules.FluentValidation
     {
         public TrackValidator()
         {
-            RuleFor(t=>t.Name).NotEmpty();
+            RuleFor(t => t.Name).NotEmpty();
         }
     }
 }

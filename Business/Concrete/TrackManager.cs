@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete.Success;
 using DataAccess.Abstract;
@@ -20,6 +22,7 @@ namespace Business.Concrete
             _trackDal = trackDal;
         }
 
+        [ValidationAspect(typeof(TrackValidator))]
         public IResult AddTrack(Track track)
         {
             _trackDal.Add(track);
@@ -47,6 +50,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Track>>(_trackDal.GetAll(p => p.Milliseconds > min && p.Milliseconds < max), Messages.TracksListed);
         }
 
+        [ValidationAspect(typeof(TrackValidator))]
         public IResult UpdateTrack(Track track)
         {
             _trackDal.Update(track);

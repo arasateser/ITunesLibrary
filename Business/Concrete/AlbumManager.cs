@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete.Success;
 using DataAccess.Abstract;
@@ -21,7 +23,7 @@ namespace Business.Concrete
             _albumDal = albumDal;
         }
 
-
+        [ValidationAspect(typeof(AlbumValidator))]
         public IResult AddAlbum(Album album)
         {
             _albumDal.Add(album);
@@ -48,6 +50,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.AlbumDeleted);
         }
 
+        [ValidationAspect(typeof(AlbumValidator))]
         IResult IAlbumService.UpdateAlbum(Album album)
         {
             _albumDal.Update(album);
