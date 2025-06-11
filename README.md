@@ -22,10 +22,11 @@ The project is structured to showcase best practices in building a maintainable,
 
 ## Technologies Used
 
-* **C#:** Main programming language.
-* **.NET 8:** Framework for building the application.
-* **Entity Framework:** ORM for database interactions.
-* **SQL Server (LocalDB):** Database used for data storage.
+* **C#**
+* **.NET 8**
+* **Entity Framework**
+* **Autofac**
+* **SQL Server (LocalDB)**
 
 ## Areas for Future Improvement
 
