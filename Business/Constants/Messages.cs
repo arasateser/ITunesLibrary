@@ -23,5 +23,6 @@ namespace Business.Constants
         public static string AlbumAdded = "Album added.";
         public static string AlbumDeleted = "Album deleted.";
         public static string AlbumUpdated = "Album updated.";
+        public static string AlbumLimitPerArtistReached = "AlbumLimitPerArtistReached.";
     }
 }

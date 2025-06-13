@@ -3,7 +3,9 @@ using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete.Error;
 using Core.Utilities.Results.Concrete.Success;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -29,6 +31,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(AlbumValidator))]
         public IResult AddAlbum(Album album)
         {
+            var result = BusinessRules.Run(IsArtistReachedAlbumLimit(album.ArtistId));
+            if (!result.Success)
+            {
+                return new ErrorResult(result.Message);
+            }
             _albumDal.Add(album);
             return new SuccessResult(Messages.AlbumAdded);
         }
@@ -58,6 +65,17 @@ namespace Business.Concrete
         {
             _albumDal.Update(album);
             return new SuccessResult(Messages.AlbumUpdated);
+        }
+
+        private IResult IsArtistReachedAlbumLimit(int artistId)
+        {
+            var result = _albumDal.GetAll(a => a.ArtistId == artistId);
+            int maxAlbumCountPerArtist = 2;
+            if (result.Count > maxAlbumCountPerArtist)
+            {
+                return new ErrorResult(Messages.AlbumLimitPerArtistReached);
+            }
+            return new SuccessResult();
         }
     }
 }
