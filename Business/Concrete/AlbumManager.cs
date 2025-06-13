@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
@@ -17,6 +18,8 @@ namespace Business.Concrete
     public class AlbumManager : IAlbumService
     {
         IAlbumDal _albumDal;
+        ILogger _logger;
+
 
         public AlbumManager(IAlbumDal albumDal)
         {

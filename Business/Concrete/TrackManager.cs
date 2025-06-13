@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results.Abstract;
@@ -17,6 +18,7 @@ namespace Business.Concrete
     public class TrackManager : ITrackService
     {
         ITrackDal _trackDal;
+        ILogger _logger;
         public TrackManager(ITrackDal trackDal)
         {
             _trackDal = trackDal;

@@ -18,6 +18,8 @@ namespace Business.Concrete
     public class ArtistManager : IArtistService
     {
         IArtistDal _artistDal;
+        ILogger _logger;
+
 
         public ArtistManager(IArtistDal artistDal)
         {
