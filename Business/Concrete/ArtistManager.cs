@@ -1,9 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete.Error;
 using Core.Utilities.Results.Concrete.Success;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -29,7 +32,11 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ArtistValidator))]
         public IResult AddArtist(Artist artist)
         {
-            //ValidationTool.Validate(new ArtistValidator(), artist);
+            var result = BusinessRules.Run(CheckIfArtistNameExists(artist.Name));
+            if (result != null)
+            {
+                return new ErrorResult(result.Message);
+            }
             _artistDal.Add(artist);
             return new SuccessResult(Messages.ArtistAdded);
         }
@@ -59,5 +66,18 @@ namespace Business.Concrete
             _artistDal.Update(artist);
             return new SuccessResult(Messages.ArtistUpdated);
         }
+
+        private IResult CheckIfArtistNameExists(string artistName)
+        {
+            var result = _artistDal.GetAll(a => a.Name == artistName).Any();
+
+            if (result)
+            {
+                return new ErrorResult(Messages.ArtistNameExists);
+            }
+            return new SuccessResult();
+        }
+
+
     }
 }
