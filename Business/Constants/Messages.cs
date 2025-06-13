@@ -12,6 +12,7 @@ namespace Business.Constants
         public static string TracksAdded = "Tracks added.";
         public static string TracksDeleted = "Tracks deleted.";
         public static string TracksUpdated = "Tracks updated.";
+        public static string TrackLimitPerAlbumExceeded = "TrackLimitPerAlbumExceeded.";
 
         public static string ArtistsListed = "Artists listed.";
         public static string ArtistAdded = "Artist added.";

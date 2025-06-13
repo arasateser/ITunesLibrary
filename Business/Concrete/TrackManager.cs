@@ -3,7 +3,9 @@ using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete.Error;
 using Core.Utilities.Results.Concrete.Success;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,14 +21,18 @@ namespace Business.Concrete
     {
         ITrackDal _trackDal;
         ILogger _logger;
-        public TrackManager(ITrackDal trackDal)
+        IAlbumService _albumService;
+        public TrackManager(ITrackDal trackDal, IAlbumService albumService)
         {
             _trackDal = trackDal;
+            _albumService = albumService;
         }
 
         [ValidationAspect(typeof(TrackValidator))]
         public IResult AddTrack(Track track)
         {
+            var result = BusinessRules.Run(TrackLimitPerAlbumExceeded());
+            
             _trackDal.Add(track);
             return new SuccessResult(Messages.TracksAdded);
         }
@@ -57,6 +63,18 @@ namespace Business.Concrete
         {
             _trackDal.Update(track);
             return new SuccessResult(Messages.TracksUpdated);
+        }
+
+        private IResult TrackLimitPerAlbumExceeded() //needs rework
+        {
+            var result = _albumService.GetAllAlbums();
+            int TrackLimitPerAlbum = 3;
+            if (result.Data.Count > TrackLimitPerAlbum)
+            {
+                return new ErrorResult(Messages.TrackLimitPerAlbumExceeded);
+            }
+            return new SuccessResult();
+
         }
     }
 }

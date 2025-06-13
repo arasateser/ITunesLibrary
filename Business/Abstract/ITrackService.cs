@@ -13,7 +13,6 @@ namespace Business.Abstract
         IDataResult<List<Track>> GetAllTracks();
         IDataResult<Track> GetByTrackId(int id);
         IDataResult<List<Track>> GetTracksByMiliseconds(int min, int max);
-
         IResult AddTrack(Track track);
         IResult DeleteTrack(int id);
         IResult UpdateTrack(Track track);
