@@ -27,6 +27,12 @@ namespace Business.Constants
         public static string AlbumLimitPerArtistReached = "AlbumLimitPerArtistReached.";
         
         public static string AuthorizationDenied = "AuthorizationDenied.";
+        public static string UserRegistered = "UserRegistered.";
+        public static string UserNotFound = "UserNotFound.";
+        public static string PasswordError = "PasswordError.";
+        public static string SuccessfulLogin = "SuccessfulLogin.";
+        public static string UserAlreadyExists = "UserAlreadyExists.";
+        public static string AccessTokenCreated = "AccessTokenCreated.";
 
     }
 }
