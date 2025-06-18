@@ -1,4 +1,5 @@
 ﻿// DataAccess/Concrete/EntityFramework/ChinookContext.cs
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,5 +17,10 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Album> Album { get; set; }
         public DbSet<Artist> Artist { get; set; }
         public DbSet<Track> Track { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
+
     }
 }
