@@ -28,6 +28,7 @@ namespace Business.Concrete
             _albumService = albumService;
         }
 
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(TrackValidator))]
         public IResult AddTrack(Track track)
         {
