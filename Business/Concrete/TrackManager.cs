@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects;
 using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
@@ -28,7 +29,7 @@ namespace Business.Concrete
             _albumService = albumService;
         }
 
-        [SecuredOperation("product.add,admin")]
+        [SecuredOperation("track.add,admin")]
         [ValidationAspect(typeof(TrackValidator))]
         public IResult AddTrack(Track track)
         {
