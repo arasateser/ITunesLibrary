@@ -32,7 +32,7 @@ namespace Business.Concrete
         public IResult AddTrack(Track track)
         {
             var result = BusinessRules.Run(TrackLimitPerAlbumExceeded());
-            
+
             _trackDal.Add(track);
             return new SuccessResult(Messages.TracksAdded);
         }
