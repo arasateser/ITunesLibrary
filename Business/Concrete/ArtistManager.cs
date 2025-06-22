@@ -3,6 +3,7 @@ using Business.BusinessAspects;
 using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -29,8 +30,9 @@ namespace Business.Concrete
             _artistDal = artistDal;
         }
 
-        [SecuredOperation("artist.add,admin")]
-        [ValidationAspect(typeof(ArtistValidator))]
+        //[SecuredOperation("artist.add,admin")]
+        //[ValidationAspect(typeof(ArtistValidator))]
+        [CacheRemoveAspect("IArtistService.Get")]
         public IResult AddArtist(Artist artist)
         {
             var result = BusinessRules.Run(CheckIfArtistNameExists(artist.Name));
@@ -49,6 +51,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ArtistDeleted);
         }
 
+        [CacheAspect]
         public IDataResult<List<Artist>> GetAllArtists()
         {
             return new SuccessDataResult<List<Artist>>(_artistDal.GetAll(), Messages.ArtistsListed);
