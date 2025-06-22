@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult AddArtist(Artist artist)
         {
             var result = _artistService.AddArtist(artist);

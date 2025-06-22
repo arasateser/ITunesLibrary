@@ -24,13 +24,12 @@ namespace Business.Concrete
         IArtistDal _artistDal;
         ILogger _logger;
 
-
         public ArtistManager(IArtistDal artistDal)
         {
             _artistDal = artistDal;
         }
 
-        [SecuredOperation("artist.add,admin")]
+        //[SecuredOperation("artist.add,admin")]
         [ValidationAspect(typeof(ArtistValidator))]
         public IResult AddArtist(Artist artist)
         {
