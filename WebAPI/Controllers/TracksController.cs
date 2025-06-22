@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
             _trackService = trackService;
         }
 
-        [HttpGet("getalltracks")]
+        [HttpGet("getall")]
         public IActionResult GetAllTracks()
         {
             var result = _trackService.GetAllTracks();
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("gettrackbyid")]
+        [HttpGet("getbyid")]
         public IActionResult GetTracksById(int id)
         {
             var result = _trackService.GetByTrackId(id);
@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("gettrackbyms")]
+        [HttpGet("getbyms")]
         public IActionResult GetTracksByMiliseconds(int min, int max)
         {
             var result = _trackService.GetTracksByMiliseconds(min, max);
@@ -51,7 +51,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult AddTrack(Track track)
         {
             var result = _trackService.AddTrack(track);
@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public IActionResult UpdateTrack(Track track)
         {
             var result = _trackService.UpdateTrack(track);
@@ -73,7 +73,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public IActionResult DeleteTrack(int id)
         {
             var result = _trackService.DeleteTrack(id);

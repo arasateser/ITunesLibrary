@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
             _artistService = artistService;
         }
 
-        [HttpGet("getallartists")]
+        [HttpGet("getall")]
         public IActionResult GetAllArtists()
         {
             var result = _artistService.GetAllArtists();
@@ -27,7 +27,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyartistid")]
+        [HttpGet("getbyid")]
         public IActionResult GetByArtistId(int id)
         {
             var result = _artistService.GetByArtistId(id);
@@ -49,7 +49,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public IActionResult DeleteArtist(int id)
         {
             var result = _artistService.DeleteArtist(id);
@@ -60,7 +60,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public IActionResult UpdateArtist(Artist artist)
         {
             var result = _artistService.UpdateArtist(artist);

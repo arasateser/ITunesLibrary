@@ -14,7 +14,7 @@ namespace WebAPI.Controllers
         {
             _albumService = albumService;
         }
-        [HttpGet("getallalbums")]
+        [HttpGet("getall")]
         public IActionResult GetAllAlbums()
         {
             var result = _albumService.GetAllAlbums();
@@ -25,7 +25,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpGet("getbyalbumid")]
+        [HttpGet("getbyid")]
         public IActionResult GetByAlbumId(int id)
         {
             var result = _albumService.GetByAlbumId(id);
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult AddAlbum(Album album)
         {
             var result = _albumService.AddAlbum(album);
@@ -47,7 +47,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public IActionResult DeleteAlbum(int id)
         {
             var result = _albumService.DeleteAlbum(id);
@@ -58,7 +58,7 @@ namespace WebAPI.Controllers
             return BadRequest(result.Message);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public IActionResult UpdateAlbum(Album album)
         {
             var result = _albumService.UpdateAlbum(album);
