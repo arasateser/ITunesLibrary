@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects;
 using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
@@ -29,6 +30,7 @@ namespace Business.Concrete
             _artistDal = artistDal;
         }
 
+        [SecuredOperation("artist.add,admin")]
         [ValidationAspect(typeof(ArtistValidator))]
         public IResult AddArtist(Artist artist)
         {
