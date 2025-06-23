@@ -16,7 +16,11 @@ namespace Core.Utilities.Interceptors
             var methodAttributes = type.GetMethod(method.Name)
                 .GetCustomAttributes<MethodInterceptionBaseAttribute>(true);
             classAttributes.AddRange(methodAttributes);
+            
+            //buradan sonra interceptorlara uygulanmasını istediğin her şeyi yaz
+            //PerformanceAspect buraya alınabilir
             //classAttributes.Add(new ExceptionLogAspect(typeof(FileLogger)));
+
 
             return classAttributes.OrderBy(x => x.Priority).ToArray();
         }
