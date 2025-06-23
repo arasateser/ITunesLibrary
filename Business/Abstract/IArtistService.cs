@@ -15,5 +15,6 @@ namespace Business.Abstract
         IResult AddArtist(Artist artist);
         IResult DeleteArtist(int artistId);
         IResult UpdateArtist(Artist artist);
+        IResult AddTransactionalTest(Artist artist);
     }
 }

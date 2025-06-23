@@ -15,6 +15,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,7 +33,7 @@ namespace Business.Concrete
 
         //[SecuredOperation("artist.add,admin")]
         //[ValidationAspect(typeof(ArtistValidator))]
-        [CacheRemoveAspect("IArtistService.Get")]
+        //[CacheRemoveAspect("IArtistService.Get")]
         public IResult AddArtist(Artist artist)
         {
             var result = BusinessRules.Run(CheckIfArtistNameExists(artist.Name));
@@ -44,6 +45,18 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ArtistAdded);
         }
 
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Artist artist)
+        {
+            AddArtist(artist);
+            if (artist.Name == "arasaras")
+            {
+                throw new Exception("");
+            }
+            AddArtist(artist);
+            return null;
+        }
+
         public IResult DeleteArtist(int artistId)
         {
             var artistToDelete = _artistDal.Get(a => a.ArtistId == artistId);
@@ -51,7 +64,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ArtistDeleted);
         }
 
-        [CacheAspect]
+        //[CacheAspect(60)]
         public IDataResult<List<Artist>> GetAllArtists()
         {
             return new SuccessDataResult<List<Artist>>(_artistDal.GetAll(), Messages.ArtistsListed);
